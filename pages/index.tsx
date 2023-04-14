@@ -1,12 +1,77 @@
+import { RegistrationFormZ } from "@/schema/registrationFormSchema";
+import axiosInstance from "@/utils/axios";
 import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { FC, FormEvent, useEffect, useMemo, useState } from "react";
+import { z } from "zod";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const initialFormData: z.infer<typeof RegistrationFormZ> = {
+  firstname: "",
+  lastname: "",
+  email: "",
+  phoneNumber: "",
+  city: "",
+  membershipType: "Not-Sure",
+};
+
+type ToastInfoType = {
+  message: string;
+  type: "success" | "error" | "";
+};
+
+const initialToastInfo: ToastInfoType = { message: "", type: "" };
+
 export default function Home() {
+  const [formData, setFormData] = useState<z.infer<typeof RegistrationFormZ>>(initialFormData);
+  const [formError, setFormError] = useState("");
+  const [toastInfo, setToastInfo] = useState<ToastInfoType>(initialToastInfo);
+  const [toastTimeout, setToastTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  const createToastTimeout = () =>
+    setToastTimeout(setTimeout(() => setToastInfo(initialToastInfo), 5000));
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (toastTimeout) {
+      clearTimeout(toastTimeout);
+      setToastInfo(initialToastInfo);
+      setToastTimeout(null);
+    }
+    setFormError("");
+    RegistrationFormZ.parseAsync(formData)
+      .then((data) => {
+        axiosInstance
+          .post("/registrationForm", { registrationFormData: data })
+          .then(() => {
+            setFormError("");
+            setFormData(initialFormData);
+            setToastInfo({ message: "Registration successful", type: "success" });
+          })
+          .catch((error) => {
+            console.log();
+            setToastInfo({
+              message:
+                error?.response?.data?.message || "Something went wrong please try again later",
+              type: "error",
+            });
+          });
+      })
+      .catch((error) => {
+        setFormError(error.issues[0].message);
+        setToastInfo({ message: error.issues[0].message, type: "error" });
+      });
+  };
+
+  useEffect(() => {
+    if (toastInfo.message !== "" || toastInfo.type !== "") createToastTimeout();
+  }, [toastInfo]);
+
   return (
     <main className="bg-white text-black">
+      {toastInfo.type !== "" ? <Toast message={toastInfo.message} type={toastInfo.type} /> : null}
       <div className="w-full h-full flex flex-1">
         <div className="min-h-screen flex-1 bg-image-1">
           <div className="flex flex-1 h-full bg-black bg-opacity-50 justify-center items-center">
@@ -125,7 +190,7 @@ export default function Home() {
       <div className="w-full h-full flex flex-1" id="registration">
         <div className="flex-1 justify-center items-center">
           <div className="flex flex-1 h-full items-center flex-col m-16">
-            <form className="w-full">
+            <form className="w-full" onSubmit={onSubmit}>
               <h3 className="text-3xl font-bold mb-6 mt-8">Hier registrieren!</h3>
               <div className="flex flex-1 gap-4">
                 <input
@@ -133,12 +198,16 @@ export default function Home() {
                   name="firstname"
                   placeholder="Vorname"
                   className="input input-bordered input-primary w-full my-2 bg-white"
+                  value={formData.firstname}
+                  onChange={(e) => setFormData({ ...formData, firstname: e.target.value })}
                 />
                 <input
                   type="text"
                   name="lastname"
                   placeholder="Name"
                   className="input input-bordered input-primary w-full my-2 bg-white"
+                  value={formData.lastname}
+                  onChange={(e) => setFormData({ ...formData, lastname: e.target.value })}
                 />
               </div>
               <div className="flex flex-1 gap-4">
@@ -147,12 +216,22 @@ export default function Home() {
                   name="email"
                   placeholder="email"
                   className="input input-bordered input-primary w-full my-2 bg-white"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
                 <input
                   type="text"
                   name="phoneNumber"
                   placeholder="Mobil Nummer"
                   className="input input-bordered input-primary w-full my-2 bg-white"
+                  value={formData.phoneNumber}
+                  onChange={(e) => {
+                    const split = e.target.value.split("");
+                    if (split.length === 0) return setFormData({ ...formData, phoneNumber: "" });
+                    const lastChar = split[split.length - 1];
+                    if (Number.isNaN(+lastChar)) return;
+                    setFormData({ ...formData, phoneNumber: e.target.value });
+                  }}
                 />
               </div>
               <input
@@ -160,28 +239,49 @@ export default function Home() {
                 name="city"
                 placeholder="Stadt"
                 className="input input-bordered input-primary w-full my-2 bg-white"
+                value={formData.city}
+                onChange={(e) => setFormData({ ...formData, city: e.target.value })}
               />
               <div className="flex flex-1 gap-4 mx-2">
-                <div className="my-2 flex items-center gap-2">
-                  <input type="radio" name="membershipType" className="radio radio-primary" />
-                  <label htmlFor="membershipType">Aktives Mitglied</label>
-                </div>
-                <div className="my-2 flex items-center gap-2">
-                  <input type="radio" name="membershipType" className="radio radio-primary" />
-                  <label htmlFor="membershipType">Nicht aktives Mitglied</label>
-                </div>
-                <div className="my-2 flex items-center gap-2">
-                  <input type="radio" name="membershipType" className="radio radio-primary" />
-                  <label htmlFor="membershipType">Ich bin mir noch nicht sicher</label>
-                </div>
+                <label className="my-2 flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="membershipType"
+                    className="radio radio-primary"
+                    checked={formData.membershipType === "Active"}
+                    onChange={() => setFormData({ ...formData, membershipType: "Active" })}
+                  />
+                  Aktives Mitglied
+                </label>
+                <label className="my-2 flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="membershipType"
+                    className="radio radio-primary"
+                    checked={formData.membershipType === "Non-Active"}
+                    onChange={() => setFormData({ ...formData, membershipType: "Non-Active" })}
+                  />
+                  Nicht aktives Mitglied
+                </label>
+                <label className="my-2 flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="membershipType"
+                    className="radio radio-primary"
+                    checked={formData.membershipType === "Not-Sure"}
+                    onChange={() => setFormData({ ...formData, membershipType: "Not-Sure" })}
+                  />
+                  Ich bin mir noch nicht sicher
+                </label>
               </div>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-gray-500">
                 Aktives Mitglied: Beteilige dich beim Anbau mit max. 10 Stunden je Woche.
               </p>
-              <p className="text-sm text-gray-700 mb-4">
+              <p className="text-sm text-gray-500 mb-4">
                 Nicht aktives Mitglied: Erwerbe Genussmittel ohne zeitlichen Aufwand, weil andere
                 Clubmitglieder deine Pflanzen aufziehen und verarbeiten
               </p>
+              <p className="text-sm text-red-500 font-bold mt-2">{formError}</p>
               <button className="btn btn-block btn-primary">Abschicken</button>
             </form>
           </div>
@@ -193,3 +293,30 @@ export default function Home() {
     </main>
   );
 }
+
+type ToastProps = {
+  message: string;
+  type: "success" | "error";
+};
+
+const Toast: FC<ToastProps> = ({ message, type }) => {
+  const toastType = useMemo(() => {
+    switch (type) {
+      case "error":
+        return "alert-error";
+      case "success":
+        return "alert-success";
+      default:
+        return "";
+    }
+  }, [type]);
+  return (
+    <div className="toast toast-top toast-start min-w-max">
+      <div className={`alert ${toastType} min-h-max`}>
+        <div>
+          <span>{message}</span>
+        </div>
+      </div>
+    </div>
+  );
+};

@@ -16,7 +16,7 @@ const Satzung = () => {
               Satzung des GMP Cannabis Social Club
             </h1>
             <a
-              href="/20230401_Vereinssatzung_GMPC_V1"
+              href="/20230401_Vereinssatzung_GMPC_V1.pdf"
               className="btn btn-active btn-primary mt-8"
               download
             >
