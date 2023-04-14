@@ -1,3 +1,4 @@
+import Footer from "@/components/footer";
 import { RegistrationFormZ } from "@/schema/registrationFormSchema";
 import axiosInstance from "@/utils/axios";
 import { Inter } from "next/font/google";
@@ -72,14 +73,16 @@ export default function Home() {
   return (
     <main className="bg-white text-black">
       {toastInfo.type !== "" ? <Toast message={toastInfo.message} type={toastInfo.type} /> : null}
-      <div className="w-full h-full flex flex-1">
+      <div className="w-full h-full lg:flex flex-1">
         <div className="min-h-screen flex-1 bg-image-1">
-          <div className="flex flex-1 h-full bg-black bg-opacity-50 justify-center items-center">
-            <Image src="/grashaus_logo.png" alt="GrasHaus Logo" width={500} height={500} />
+          <div className="flex flex-1 min-h-screen bg-black bg-opacity-50 justify-center items-center">
+            <Link href="/">
+              <Image src="/grashaus_logo.png" alt="GrasHaus Logo" width={500} height={500} />
+            </Link>
           </div>
         </div>
         <div className="min-h-screen flex-1 justify-center items-center">
-          <div className="flex flex-1 h-full justify-center items-center flex-col p-8">
+          <div className="flex flex-1 min-h-screen justify-center items-center flex-col p-8">
             <Image src="/grashaus_green_logo.png" alt="GrasHaus Logo" width={300} height={300} />
             <h1 className="text-3xl font-extrabold text-center -mt-4">
               Willkommen zur Registrierung im ersten Cannabis Club deiner Stadt.
@@ -87,9 +90,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full h-full flex flex-1">
+      <div className="w-full h-full flex flex-1 flex-col-reverse lg:flex-row">
         <div className="flex-1 justify-center items-center">
-          <div className="flex flex-1 h-full items-center flex-col my-16">
+          <div className="flex flex-1 h-full items-center flex-col m-16">
             <div>
               <h3 className="text-3xl font-bold mb-6">Unsere Ziele:</h3>
               <ul className="list-disc mb-4 text-xl">
@@ -112,22 +115,22 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex-1 bg-image-2">
+        <div className="flex-1 bg-image-2 min-h-[500px]">
           <div className="flex flex-1 h-full bg-black bg-opacity-20 justify-center items-center"></div>
         </div>
       </div>
-      <div className="w-full h-full flex flex-1">
-        <div className="flex-1 bg-image-6">
+      <div className="w-full h-full lg:flex flex-1">
+        <div className="flex-1 bg-image-6 min-h-[500px]">
           <div className="flex flex-1 h-full bg-black bg-opacity-20 justify-center items-center"></div>
         </div>
         <div className="flex-1 justify-center items-center">
           <div className="flex flex-1 h-full items-center flex-col m-16">
             <div>
-              <h3 className="text-3xl font-bold mb-6">GMP Cannabis Club</h3>
+              <h3 className="text-3xl font-bold mb-6">GRASHAUS Cannabis Club</h3>
               <p>
                 Wir sind ein eingetragener Verein in Stuttgart mit dem Ziel, unsere Mitglieder nach
                 der Legalisierung durch gemeinschaftlichen Selbstanbau mit Cannabis zu versorgen.
-                Politik, Bildung und Verwaltung finden im GMP Cannabis Club kompetente
+                Politik, Bildung und Verwaltung finden im GRASHAUS Cannabis Club kompetente
                 Ansprechpartner für die Herausforderungen der fortschreitenden Legalisierung von
                 Cannabis.
               </p>
@@ -143,7 +146,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full h-full flex flex-1">
+      <div className="w-full h-full flex flex-1 flex-col-reverse lg:flex-row">
         <div className="flex-1 justify-center items-center">
           <div className="flex flex-1 h-full items-center flex-col m-16">
             <div>
@@ -162,12 +165,12 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex-1 bg-image-5">
+        <div className="flex-1 bg-image-5 min-h-[500px]">
           <div className="flex flex-1 h-full bg-black bg-opacity-20 justify-center items-center"></div>
         </div>
       </div>
-      <div className="w-full h-full flex flex-1">
-        <div className="flex-1 bg-image-4">
+      <div className="w-full h-full lg:flex flex-1">
+        <div className="flex-1 bg-image-4 min-h-[500px]">
           <div className="flex flex-1 h-full bg-black bg-opacity-20 justify-center items-center"></div>
         </div>
         <div className="flex-1 justify-center items-center">
@@ -187,12 +190,12 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full h-full flex flex-1" id="registration">
+      <div className="w-full h-full flex flex-1 flex-col-reverse lg:flex-row" id="registration">
         <div className="flex-1 justify-center items-center">
           <div className="flex flex-1 h-full items-center flex-col m-16">
             <form className="w-full" onSubmit={onSubmit}>
               <h3 className="text-3xl font-bold mb-6 mt-8">Hier registrieren!</h3>
-              <div className="flex flex-1 gap-4">
+              <div className="sm:flex flex-1 sm:gap-4">
                 <input
                   type="text"
                   name="firstname"
@@ -210,7 +213,7 @@ export default function Home() {
                   onChange={(e) => setFormData({ ...formData, lastname: e.target.value })}
                 />
               </div>
-              <div className="flex flex-1 gap-4">
+              <div className="sm:flex flex-1 sm:gap-4">
                 <input
                   type="email"
                   name="email"
@@ -242,7 +245,7 @@ export default function Home() {
                 value={formData.city}
                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
               />
-              <div className="flex flex-1 gap-4 mx-2">
+              <div className="sm:flex flex-1 sm:gap-4 mx-2">
                 <label className="my-2 flex items-center gap-2">
                   <input
                     type="radio"
@@ -275,21 +278,24 @@ export default function Home() {
                 </label>
               </div>
               <p className="text-sm text-gray-500">
-                Aktives Mitglied: Beteilige dich beim Anbau mit max. 10 Stunden je Woche.
+                <span className="font-bold">Aktives Mitglied:</span> Beteilige dich beim Anbau mit
+                flexiblen Stunden je Woche.
               </p>
               <p className="text-sm text-gray-500 mb-4">
-                Nicht aktives Mitglied: Erwerbe Genussmittel ohne zeitlichen Aufwand, weil andere
-                Clubmitglieder deine Pflanzen aufziehen und verarbeiten
+                <span className="font-bold">Nicht aktives Mitglied:</span> Erwerbe Genussmittel ohne
+                zeitlichen Aufwand, weil andere Clubmitglieder deine Pflanzen aufziehen und
+                verarbeiten
               </p>
               <p className="text-sm text-red-500 font-bold mt-2">{formError}</p>
               <button className="btn btn-block btn-primary">Abschicken</button>
             </form>
           </div>
         </div>
-        <div className="flex-1 bg-image-3">
+        <div className="flex-1 bg-image-3 min-h-[500px]">
           <div className="flex flex-1 h-full bg-black bg-opacity-20 justify-center items-center"></div>
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

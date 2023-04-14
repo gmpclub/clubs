@@ -1,22 +1,25 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Satzung = () => {
   return (
     <main className="bg-white text-black">
-      <div className="w-full h-full flex flex-1">
+      <div className="w-full h-full lg:flex flex-1">
         <div className="min-h-screen flex-1 bg-image-satzung-1">
-          <div className="flex flex-1 h-full bg-black bg-opacity-50 justify-center items-center">
-            <Image src="/grashaus_logo.png" alt="GrasHaus Logo" width={500} height={500} />
+          <div className="flex flex-1 min-h-screen bg-black bg-opacity-50 justify-center items-center">
+            <Link href="/">
+              <Image src="/grashaus_logo.png" alt="GrasHaus Logo" width={500} height={500} />
+            </Link>
           </div>
         </div>
         <div className="min-h-screen flex-1 justify-center items-center">
-          <div className="flex flex-1 h-full justify-center items-center flex-col p-8">
+          <div className="flex flex-1 min-h-screen justify-center items-center flex-col p-8">
             <Image src="/grashaus_green_logo.png" alt="GrasHaus Logo" width={300} height={300} />
             <h1 className="text-3xl font-extrabold text-center -mt-4">
-              Satzung des GMP Cannabis Social Club
+              Satzung des GRASHAUS Cannabis Social Club
             </h1>
             <a
-              href="/20230401_Vereinssatzung_GMPC_V1.pdf"
+              href="/20230401_Vereinssatzung_GRASHAUSC_V1.pdf"
               className="btn btn-active btn-primary mt-8"
               download
             >
@@ -25,7 +28,7 @@ const Satzung = () => {
           </div>
         </div>
       </div>
-      <div className="w-full h-full flex flex-1">
+      <div className="w-full h-full flex flex-1 flex-col-reverse lg:flex-row">
         <div className="flex-1 justify-center items-center">
           <div className="flex flex-1 h-full items-center flex-col my-16">
             <div className="m-16">
@@ -40,7 +43,7 @@ const Satzung = () => {
               <p>
                 Da der Anbau von THC-haltigem Hanf, auch für den Eigenbedarf in der Bundesrepublik
                 Deutschland immer noch verboten ist, und auch aktiv verfolgt wird, werden die
-                Aufgaben des GMP Cannabis Social Club Vereins zunächst darin bestehen, sich als
+                Aufgaben des GRASHAUS Cannabis Social Club Vereins zunächst darin bestehen, sich als
                 Interessengemeinschaften von Cannabis-Konsumenten einzusetzen für:
               </p>
               <br />
@@ -58,7 +61,7 @@ const Satzung = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1 bg-image-satzung-2">
+        <div className="flex-1 bg-image-satzung-2 min-h-[500px]">
           <div className="flex flex-1 h-full bg-black bg-opacity-20 justify-center items-center"></div>
         </div>
       </div>

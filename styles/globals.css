@@ -5,57 +5,73 @@
 @layer components {
   .bg-image-1 {
     background: url("/bg-1.jpg");
-    background-size: 100vw;
     background-repeat: no-repeat;
     object-fit: scale-down;
+    background-size: cover;
   }
   .bg-image-2 {
-    background: url("/bg-2.png");
-    background-size: 38vw;
+    background: url("/bg-2.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     object-fit: scale-down;
+    background-size: cover;
   }
   .bg-image-3 {
     background: url("/bg-3.jpg");
-    background-size: 50vw;
     background-position: center center;
     background-repeat: no-repeat;
     object-fit: cover;
+    background-size: cover;
   }
   .bg-image-4 {
-    background: url("/bg-4.png");
-    background-size: 50vw;
+    background: url("/bg-4.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     object-fit: cover;
+    background-size: cover;
   }
   .bg-image-5 {
     background: url("/bg-5.jpg");
-    background-size: 50vw;
     background-position: center center;
     background-repeat: no-repeat;
     object-fit: cover;
+    background-size: cover;
   }
   .bg-image-6 {
     background: url("/bg-6.jpg");
-    background-size: 50vw;
     background-position: center center;
     background-repeat: no-repeat;
     object-fit: cover;
+    background-size: cover;
   }
   .bg-image-satzung-1 {
     background: url("/bg-satzung-1.jpg");
-    background-size: 50vw;
     background-position: center center;
     background-repeat: no-repeat;
     object-fit: scale-down;
+    background-size: cover;
   }
   .bg-image-satzung-2 {
     background: url("/bg-satzung-2.jpg");
-    background-size: 50vw;
     background-position: center center;
     background-repeat: no-repeat;
     object-fit: scale-down;
+    background-size: cover;
+  }
+
+  .radio:checked {
+    box-shadow: 0 0 0 4px #fff inset, 0 0 0 4px #fff inset;
+  }
+
+  @keyframes radiomark {
+    0% {
+      box-shadow: 0 0 0 12px #fff inset, 0 0 0 12px #fff inset;
+    }
+    50% {
+      box-shadow: 0 0 0 3px #fff inset, 0 0 0 3px #fff inset;
+    }
+    100% {
+      box-shadow: 0 0 0 4px #fff inset, 0 0 0 4px #fff inset;
+    }
   }
 }
