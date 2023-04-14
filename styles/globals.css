@@ -2,26 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer components {
+  .bg-image-1 {
+    background: url("/bg-1.jpg");
+    background-size: 100vw;
+    background-repeat: no-repeat;
+    object-fit: scale-down;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  .bg-image-2 {
+    background: url("/bg-2.png");
+    background-size: 38vw;
+    background-position: center center;
+    background-repeat: no-repeat;
+    object-fit: scale-down;
+  }
+  .bg-image-3 {
+    background: url("/bg-3.jpg");
+    background-size: 50vw;
+    background-position: center center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+  }
+  .bg-image-4 {
+    background: url("/bg-4.png");
+    background-size: 50vw;
+    background-position: center center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+  }
+  .bg-image-5 {
+    background: url("/bg-5.jpg");
+    background-size: 50vw;
+    background-position: center center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+  }
+  .bg-image-6 {
+    background: url("/bg-6.jpg");
+    background-size: 50vw;
+    background-position: center center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+  }
+  .bg-image-satzung-1 {
+    background: url("/bg-satzung-1.jpg");
+    background-size: 50vw;
+    background-position: center center;
+    background-repeat: no-repeat;
+    object-fit: scale-down;
+  }
+  .bg-image-satzung-2 {
+    background: url("/bg-satzung-2.jpg");
+    background-size: 50vw;
+    background-position: center center;
+    background-repeat: no-repeat;
+    object-fit: scale-down;
+  }
 }
