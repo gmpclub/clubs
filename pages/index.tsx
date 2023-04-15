@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, FormEvent, useEffect, useMemo, useState } from "react";
+import { AiOutlineLoading } from "react-icons/ai";
 import { z } from "zod";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -30,12 +31,14 @@ export default function Home() {
   const [formError, setFormError] = useState("");
   const [toastInfo, setToastInfo] = useState<ToastInfoType>(initialToastInfo);
   const [toastTimeout, setToastTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const createToastTimeout = () =>
     setToastTimeout(setTimeout(() => setToastInfo(initialToastInfo), 5000));
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     if (toastTimeout) {
       clearTimeout(toastTimeout);
       setToastInfo(initialToastInfo);
@@ -58,11 +61,13 @@ export default function Home() {
                 error?.response?.data?.message || "Something went wrong please try again later",
               type: "error",
             });
+            setLoading(false);
           });
       })
       .catch((error) => {
         setFormError(error.issues[0].message);
         setToastInfo({ message: error.issues[0].message, type: "error" });
+        setLoading(false);
       });
   };
 
@@ -290,7 +295,9 @@ export default function Home() {
                 verarbeiten
               </p>
               <p className="text-sm text-red-500 font-bold mt-2">{formError}</p>
-              <button className="btn btn-block btn-primary">Abschicken</button>
+              <button className="btn btn-block btn-primary" disabled={loading}>
+                {loading ? <AiOutlineLoading className="animate-spin" size={20} /> : "Abschicken"}
+              </button>
             </form>
           </div>
         </div>
