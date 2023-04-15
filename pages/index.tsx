@@ -231,6 +231,9 @@ export default function Home() {
                   onChange={(e) => {
                     const split = e.target.value.split("");
                     if (split.length === 0) return setFormData({ ...formData, phoneNumber: "" });
+                    if (split.length === 1)
+                      if (split[0] === "+")
+                        return setFormData({ ...formData, phoneNumber: e.target.value });
                     const lastChar = split[split.length - 1];
                     if (Number.isNaN(+lastChar)) return;
                     setFormData({ ...formData, phoneNumber: e.target.value });
