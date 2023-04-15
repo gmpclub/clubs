@@ -247,23 +247,28 @@ export default function Home() {
                   }}
                 />
               </div>
-              <div className="sm:flex flex-1 sm:gap-4">
-                <input
-                  type="text"
-                  name="city"
-                  placeholder="Stadt"
-                  className="input input-bordered input-primary w-full my-2 bg-white"
-                  value={formData.city}
-                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                />
-                <input
-                  type="date"
-                  name="birthdate"
-                  placeholder="Geburtsdatum"
-                  className="input input-bordered input-primary w-full my-2 bg-white"
-                  value={formData.birthdate}
-                  onChange={(e) => setFormData({ ...formData, birthdate: e.target.value })}
-                />
+              <div className="sm:flex flex-1 sm:gap-4 items-end">
+                <div className="flex flex-1">
+                  <input
+                    type="text"
+                    name="city"
+                    placeholder="Stadt"
+                    className="input input-bordered input-primary w-full my-2 bg-white"
+                    value={formData.city}
+                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                  />
+                </div>
+                <label className="flex flex-1 flex-col">
+                  <span className="text-xs text-primary-focus ml-2">Geburtdatum</span>
+                  <input
+                    type="date"
+                    name="birthdate"
+                    placeholder="Geburtsdatum"
+                    className="input input-bordered input-primary w-full my-2 bg-white"
+                    value={formData.birthdate}
+                    onChange={(e) => setFormData({ ...formData, birthdate: e.target.value })}
+                  />
+                </label>
               </div>
               <div className="sm:flex flex-1 sm:gap-4 mx-2">
                 <label className="my-2 flex items-center gap-2">
