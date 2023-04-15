@@ -53,6 +53,7 @@ export default function Home() {
             setFormError("");
             setFormData(initialFormData);
             setToastInfo({ message: "Registration successful", type: "success" });
+            setLoading(false);
           })
           .catch((error) => {
             console.log();
