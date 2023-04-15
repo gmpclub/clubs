@@ -39,10 +39,7 @@ export const RegistrationFormZ = z.object({
   firstname: z.string().min(3, "Firstname must be atleast 3 charaters"),
   lastname: z.string().min(3, "Lastname must be atleast 3 charaters"),
   email: z.string().email("Please provide a valid email"),
-  phoneNumber: z
-    .string()
-    .min(11, "Mobil Nummer must be of 11 numbers")
-    .max(11, "Mobil Nummer must be of 11 numbers"),
+  phoneNumber: z.string(),
   city: z.string().min(3),
   membershipType: z.enum(membershipTypeEnum),
 });
