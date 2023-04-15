@@ -24,6 +24,10 @@ const schema = new Schema({
     type: String,
     required: false,
   },
+  birthdate: {
+    type: Date,
+    required: true,
+  },
   membershipType: {
     type: String,
     enum: membershipTypeEnum,
@@ -41,5 +45,6 @@ export const RegistrationFormZ = z.object({
   email: z.string().email("Please provide a valid email"),
   phoneNumber: z.string(),
   city: z.string().min(3),
+  birthdate: z.string(),
   membershipType: z.enum(membershipTypeEnum),
 });

@@ -18,7 +18,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
           registrationFormData.firstname ||
           registrationFormData.lastname ||
           registrationFormData.city ||
-          registrationFormData.membershipType
+          registrationFormData.membershipType ||
+          registrationFormData.birthdate
         )
       )
         return res.status(400).json({ message: "Incomplete Data" });
@@ -41,12 +42,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
           })
         );
       });
-      return RegistrationForm.create(registrationFormData).then(() =>
-        res.status(200).json({
-          success: true,
-          message: "Registration Succesful",
-        })
-      );
     default:
       return res.status(400).json({ message: `No ${req.method} action exist.` });
   }

@@ -16,6 +16,7 @@ const initialFormData: z.infer<typeof RegistrationFormZ> = {
   email: "",
   phoneNumber: "",
   city: "",
+  birthdate: "",
   membershipType: "Not-Sure",
 };
 
@@ -246,14 +247,24 @@ export default function Home() {
                   }}
                 />
               </div>
-              <input
-                type="text"
-                name="city"
-                placeholder="Stadt"
-                className="input input-bordered input-primary w-full my-2 bg-white"
-                value={formData.city}
-                onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-              />
+              <div className="sm:flex flex-1 sm:gap-4">
+                <input
+                  type="text"
+                  name="city"
+                  placeholder="Stadt"
+                  className="input input-bordered input-primary w-full my-2 bg-white"
+                  value={formData.city}
+                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                />
+                <input
+                  type="date"
+                  name="birthdate"
+                  placeholder="Geburtsdatum"
+                  className="input input-bordered input-primary w-full my-2 bg-white"
+                  value={formData.birthdate}
+                  onChange={(e) => setFormData({ ...formData, birthdate: e.target.value })}
+                />
+              </div>
               <div className="sm:flex flex-1 sm:gap-4 mx-2">
                 <label className="my-2 flex items-center gap-2">
                   <input
