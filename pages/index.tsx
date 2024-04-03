@@ -92,7 +92,7 @@ export default function Home() {
           <div className="flex flex-1 min-h-screen justify-center items-center flex-col p-8">
             <Image src="/grashaus_green_logo.png" alt="GrasHaus Logo" width={300} height={300} />
             <h1 className="text-3xl font-extrabold text-center -mt-4">
-              Willkommen zur Registrierung im ersten Cannabis Club deiner Stadt.
+              Willkommen zur Registrierung im tollsten Cannabis Club deiner Stadt.
             </h1>
           </div>
         </div>
