@@ -144,9 +144,7 @@ export default function Home() {
               <br />
               <p>
                 Unser Handeln orientiert sich an der ENCOD-Kampagne für freie Cannabis Clubs. Dabei
-                profitieren wir von unserer Erfahrung in Amerika, Uruguay, Spanien,
-                Belgien und den Niederlanden und Thailand die wir seit 2009 gesammelt haben - und
-                wir hier beste Kontakte pflegen. Wir streben eine demokratische Zusammenarbeit aller
+                profitieren wir von unserer Erfahrung in Amerika, Uruguay, Spanien, Belgien und Thailand die wir seit 2009 gesammelt haben. Wir hier beste Kontakte pflegen. Wir streben eine demokratische Zusammenarbeit aller
                 CSCs in Deutschland an.
               </p>
             </div>
