@@ -16,7 +16,7 @@ const Satzung = () => {
           <div className="flex flex-1 min-h-screen justify-center items-center flex-col p-8">
             <Image src="/grashaus_green_logo.png" alt="GrasHaus Logo" width={300} height={300} />
             <h1 className="text-3xl font-extrabold text-center -mt-4">
-              Satzung des GRASHAUS Cannabis Social Club
+              Die Satzung des GRASHAUS Cannabis Social Club gibt hier bald zum Download
             </h1>
             <a
               href="/20230401_Vereinssatzung_GRASHAUSC_V1.pdf"
